@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+<!--<select id="first-choice">-->
+<!--  <option selected value="base">Please Select</option>-->
+<!--  <option value="beverages">Beverages</option>-->
+<!--  <option value="snacks">Snacks</option>-->
+<!--</select>-->
+{% block main %}
+    <h1 class="mb-3">Sell Securities</h1>
+    <form action="/sell" method="post">
+        <div class="form-group">
+            <!--<input autocomplete="off" id="symbol" onkeyup="lookupPrice()" name="symbol" placeholder="Symbol" type="text">-->
+            <select id="symbol" name="symbol" placeholder="Symbol" type="text">
+             {% for stock in stocks %}
+                 <option> {{ stock["ticker_symbol"] | safe }}</option>
+             {% endfor %}
+            </select>
+        </div>
+        <a class="col-sm-8 mx-auto" id="symDisplay" name="symDisplay"></a>
+        <div class="form-group">
+            <input autocomplete="off" id="shares" name="shares" placeholder="Quantity"  label="Quantity">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell Shares Now</button>
+    </form>
+
+
+    <script>
+    function lookupPrice() {
+        $(document).ready(function(){
+            $('#symbol').keyup(function(){
+                var symname = $('#symbol').val();
+                $.ajax({
+                    type: 'GET',
+                    url: '/lookup',
+                    data: {
+                        symbol: symname
+                    },
+                    success: function(data) {
+                        $('#symDisplay').html(data.name + ": " + data.price );
+                    },
+                    error: function() {
+                        alert('error loading lookupprice');
+                    }
+                });
+            });
+        });
+    }
+    </script>
+{% endblock %}

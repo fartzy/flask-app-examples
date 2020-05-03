@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+    <h1 class="mb-3">History of Transactions</h1>
+      <div class="row mb-6">
+        <div class="col-md-2 themed-grid-col-data">Type</div>
+        <div class="col-md-2 themed-grid-col-data">Time of Trade</div>
+        <div class="col-md-2 themed-grid-col-data">Ticker Symbol</div>
+        <div class="col-md-2 themed-grid-col-data">Shares</div>
+        <div class="col-md-2 themed-grid-col-data">Price</div>
+        <div class="col-md-2 themed-grid-col-data">Total Cost</div>
+      </div>
+      <div class="row mb-6">
+        {% for transaction in transactions %}
+            <div class="col-md-2 themed-grid-col-header">{{ transaction["transaction_type"] | safe }}</div>
+            <div class="col-md-2 themed-grid-col-header">{{ transaction["timestamp"] | safe }}</div>
+            <div class="col-md-2 themed-grid-col-header">{{ transaction["ticker_symbol"] | safe }}</div>
+            <div class="col-md-2 themed-grid-col-header">{{ transaction["quantity"] | safe }}</div>
+            <div class="col-md-2 themed-grid-col-header">${{ transaction["price"] | safe }}</div>
+            <div class="col-md-2 themed-grid-col-header">${{ transaction["total"] | safe }}</div>
+        {% endfor %}
+      </div>
+{% endblock %}

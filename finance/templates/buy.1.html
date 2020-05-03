@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" onchange="lookupprice" name="symbol" placeholder="symbol" type="text">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" id="sym" autofocus class="form-control" onchange="lookupprice" name="symbol" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" id="sym" autofocus class="form-control" name="quantity">
+        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
+
+
+
+
+    <script>
+        function lookupprice()
+        {
+            var textInput = document.getElementById('sym');
+
+            // Init a timeout variable to be used below
+            var timeout = null;
+            xhttp = new XMLHttpRequest();
+            // Listen for keystroke events
+            textInput.onkeyup = function (e)
+            {
+                // Clear the timeout if it has already been set.
+                // This will prevent the previous task from executing
+                // if it has been less than <MILLISECONDS>
+                clearTimeout(timeout);
+
+                // Make a new timeout set to go off in 800ms
+                timeout = setTimeout(function () {
+                    console.log('Input Value:', textInput.value);
+                }, 500);
+            };
+
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+                }
+              };
+        }
+
+    </script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+    <h1 class="mb-3">Current Positions</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Stock</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Current Price</th>
+          <th scope="col">Total Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for position in positions %}
+          <tr>
+            <td class="themed-grid-col-header"><pre>{{ position["symbol"] | safe }}</pre></td>
+            <td class="themed-grid-col-header"><pre>{{ position["shares"] | safe }}</pre></td>
+            <td class="themed-grid-col-header"><pre>${{ position["price"] | safe }}</pre></td>
+            <td class="themed-grid-col-header"><pre>${{ position["total_value"] | safe }}</pre></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+   <br/><br><br/>
+    <h1 class="mb-3">Summary</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Cash Balance</th>
+          <th scope="col">Total Value of Holdings</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="themed-grid-col-header"><pre>{{ total_cash | safe }}</pre></td>
+          <td class="themed-grid-col-header"><pre>{{ total_holding_value | safe }}</pre></td>
+        </tr>
+      </tbody>
+    </table>
+{% endblock %}

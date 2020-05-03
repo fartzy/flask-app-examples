@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block content %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <!--<form class="needs-validation" action="/register" method="post" novalidate>-->
+    <form class="needs-validation" action="/register" method="post" novalidate>
+        <div class="form-group">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            <div class="invalid-feedback">
+             Please provide a valid username.
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            <div class="invalid-feedback">
+             Please provide a password.
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="confirmation" name="confirmation" placeholder="Confirm Password" required>
+            <div class="invalid-feedback">
+             Please confirm password.
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+
+    <script>
+    // function lookupPrice() {
+    //     $(document).ready(function(){
+    //         $('#symbol').keyup(function(){
+    //             var symname = $('#symbol').val();
+    //             $.ajax({
+    //                 type: 'GET',
+    //                 url: '/check',
+    //                 data: {
+    //                     username: symname
+    //                 },
+    //                 success: function(data) {
+    //                     $('#symDisplay').html(data.name + ": " + data.price );
+    //                 },
+    //                 error: function() {
+    //                     alert('error loading lookupprice');
+    //                 }
+    //             });
+    //         });
+    //     });
+    // }
+
+    // (function () {
+    //     "use strict";
+    //     window.addEventListener("load",function () {
+
+    //             // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    //             var forms = document.getElementsByClassName("needs-validation");
+
+    //             // Loop over them and prevent submission
+    //             Array.prototype.filter.call(forms, function (form) {
+    //                 form.addEventListener(
+    //                     "submit",
+    //                     function (event) {
+    //                         if ((form.checkValidity() === false) || (form.checkUserName() === false)) {
+    //                             event.preventDefault();
+    //                             event.stopPropagation();
+    //                         }
+    //                         form.classList.add("was-validated");
+    //                     },
+    //                     false
+    //                 );
+    //             });
+    //         },
+    //         false
+    //     );
+    // })();
+
+    //     function checkUserName() {
+    //     $(document).ready(function(){
+    //         $('#symbol').keyup(function(){
+    //             var symname = $('#symbol').val();
+    //             $.ajax({
+    //                 type: 'GET',
+    //                 url: '/check',
+    //                 data: {
+    //                     username: symname
+    //                 },
+    //                 success: function(data) {
+    //                     $('#symDisplay').html(data.name + ": " + data.price );
+    //                 },
+    //                 error: function() {
+    //                     alert('error loading lookupprice');
+    //                 }
+    //             });
+    //         });
+    //     });
+    // }
+
+        function checkUserName(form) {
+            var symname = $('#symbol').val();
+            $.ajax({
+                type: 'GET',
+                url: '/check',
+                data: {
+                    username: symname
+                },
+                success: function(data) {
+                    return true;
+                },
+                error: function() {
+                    alert('error loading lookupprice');
+                }
+            });
+        }
+
+    </script>
+{% endblock %}

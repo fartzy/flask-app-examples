@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+    <h2>Current Positions</h2>
+      <div class="row mb-4">
+        <div class="col-md-2 themed-grid-col-data">Stock</div>
+        <div class="col-md-2 themed-grid-col-data">Quantity</div>
+        <div class="col-md-2 themed-grid-col-data">Current Price</div>
+        <div class="col-md-2 themed-grid-col-data">Total Value</div>
+      </div>
+
+        {% for position in positions %}
+<div class="row mb-4">
+          <div class="col-md-2 themed-grid-col-header">{{ position["symbol"] | safe }}</div>
+          <div class="col-md-2 themed-grid-col-header">{{ position["shares"] | safe }}</div>
+          <div class="col-md-2 themed-grid-col-header">${{ position["price"] | safe }}</div>
+          <div class="col-md-2 themed-grid-col-header">${{ position["total_value"] | safe }}</div>
+</div>
+        {% endfor %}
+
+    <!--<h1 class="mb-3">Summary</h1>-->
+    <!--<table class="table">-->
+    <!--  <thead>-->
+    <!--    <tr>-->
+    <!--      <th scope="col">Cash Balance</th>-->
+    <!--      <th scope="col">Total Equity Value</th>-->
+    <!--    </tr>-->
+    <!--  </thead>-->
+    <!--  <tbody>-->
+    <!--    <tr>-->
+    <!--      <td><pre>{{ total_cash | safe }}</pre></td>-->
+    <!--      <td><pre>{{ total_holding_value | safe }}</pre></td>-->
+    <!--    </tr>-->
+    <!--  </tbody>-->
+    <!--</table>-->
+{% endblock %}
